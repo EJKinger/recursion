@@ -28,6 +28,20 @@ var stringifyJSON = function(obj) {
   	else if (_.isEqual(obj, {})){
   		return "{}";
   	}
+  	
+  	else {
+  		var retVal = "";
+  		for (item in obj){
+  			if ((obj[item] === 'undefined') || (typeof obj[item] === 'function')){
+  				retVal = "";
+  				return "{}";
+  			}
+  			retVal += stringifyJSON(item) + ":" + stringifyJSON(obj[item]) + ",";
+  		}
+  		retVal = retVal.slice(0, retVal.length - 1);
+  		return "{" + retVal + "}";
+  	}
+  
   }
   else return String(obj);
 
