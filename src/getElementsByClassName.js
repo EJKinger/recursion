@@ -5,42 +5,16 @@
 
 // But instead we're going to implement it from scratch:
 var getElementsByClassName = function(className){
-
-  var inArr = function(str, arr){
-  	for (var i = 0; i < arr.length; i++){
-  		if (str === arr[i]){
-  			return true;
-  		}
-  	}
-  	return false;
-  }
   var retArr = [];
-  // your code here
-  var classes = className.split(' ');
-  if (classes.length > 1){
-  	var hold = [];
-  	classes.forEach(function(item){
-	  if ((hold === getElementsByClassName(item)) || (hold === [])){  
-  	  	hold = getElementsByClassName(item);
-  	  }
-  	})
-  	retArr.concat(hold);
-  }
-
-  classes.forEach(function(item){
-  	if (classes.length > 1){
-
-  	  retArr.concat(getElementsByClassName(item));
-    } 
-  })
-
   var bodyClassNames = [];
   for (var i = 0; i < document.body.classList.length; i++){
   	bodyClassNames.push(document.body.classList[i]);
   }
-  if (inArr(className, bodyClassNames)){
-  	retArr.push(document.body)
-  }
+  bodyClassNames.forEach(function(item){
+  	if (className === item){
+  		retArr.push(document.body);
+  	}
+  })
 
   var childNodeCheck = function(node){
     for (var i = 0; i < node.length; i++){
